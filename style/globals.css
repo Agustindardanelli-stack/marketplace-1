@@ -15,9 +15,7 @@ body {
   animation: moverYMostrar 1s forwards;
 }
 
-.miClaseCSSMobile{
-  background-color: #ec0c7c;
-}
+
 
 @keyframes moverYMostrar {
   0% {
