@@ -1,8 +1,15 @@
 import Image from 'next/image'
-
+import  NavBar from './component/Navbar'
+import Option_main from './component/Option_mai'
+import { images } from '../../next.config'
+import Banner from './component/banner'
 export default function Home() {
   return (
-    <h1>Hola mundo </h1>
+    <div>
+    <NavBar/>
+    <Option_main/>
+    <Banner></Banner>
+    </div>
     
   )
 }
