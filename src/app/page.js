@@ -9,6 +9,7 @@ export default function Home() {
     <NavBar/>
     <Option_main/>
     <Banner></Banner>
+    <h1></h1>
     </div>
     
   )
