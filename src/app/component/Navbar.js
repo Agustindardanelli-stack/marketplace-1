@@ -1,8 +1,9 @@
 "use client"
+import { MdOutlineShoppingCart } from "react-icons/md";
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
-
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
@@ -14,14 +15,18 @@ export default function Navbar() {
           name="description"
           content="Autoservicio para celiacos en rio cuarto"
         />
-        <link rel="icon" href="/logo.ico" />     
+        <link  className="outline hover:outline-offset-2" rel="icon" href="/logo.ico" />     
       </Head>
-      <nav className="w-full bg-slate-100 shadow">
+      <nav className="w-full text-black shadow">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
-            <div className="flex items-center justify-between py-3 md:py-5 md:block">
-              <Link href="/">
-                <h2 className="text-2xl text-black font-bold">NEXT JS</h2>
+            <div className="flex items-center justify-between  md:py-3 md:block">
+              <Link href="/">                
+                <Image className='items  ' 
+                src="/logonuevo.png" 
+                width={110} 
+                height={124}                
+                />
               </Link>
               <div className="md:hidden">
                 <button
@@ -68,30 +73,28 @@ export default function Navbar() {
               }`}
             >
               <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                <li className="text-black">
+                <li className="text-black text-xl ">
                   <Link href="/">
-                    Home
+                  <h1 className="text-lg  underline hover:underline-offset-4">Home</h1>
                   </Link>
                 </li>
-                <li className="text-black">
-                  <Link href="/blogs">
-                    Contacto
+                <li className="text-black text-xl ">
+                  <Link href="/Contact">                                      
+                    <h1 className="text-lg  underline hover:underline-offset-4">Contacto </h1>
                   </Link>
                 </li>
-                <li className="text-black">
-                  <Link href="/about">
-                    Login
+                <li className="text-black text-xl ">
+                  <Link href="/login">
+                    <h3 className="text-lg  underline hover:underline-offset-4 ">Login</h3>                     
                   </Link>
                 </li>
-                <li className="text-black">
+                <li className="text-black text-xl">
                   <Link href="/contact">
-                    Carrito
+                  <MdOutlineShoppingCart className="text-2xl outline hover:outline-offset-2  outline-1 "/>
                   </Link>
                 </li>
                 <li className="text-black">
-                  <Link href="/contact">
-                    Aca va un buscador
-                  </Link>
+                                
                 </li>
               </ul>
             </div>
