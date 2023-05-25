@@ -26,14 +26,16 @@ export default function Banner (){
   return (
     <div className={isMobile ? "miClaseCSSMobile" : "miClaseCSS"}
     >
+    <div className="shadow-2xl ">
     <Image 
       id="miDiv"
       width={800}
       height={800}
-      className="pt-10 rounded-tl-lg rounded-br-lg"
+      className="p-10 shadow-2xl "
       src="/Banner_Main.jpg"
       alt="Sin Tac Rio Cuarrto"
     />
+    </div>
     </div>
   )
 }
