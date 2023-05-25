@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-
 const Option_mai = () => {
   return (
     <div className="grid grid-cols-3 w-screen">

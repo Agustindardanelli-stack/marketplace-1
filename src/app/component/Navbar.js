@@ -88,13 +88,10 @@ export default function Navbar() {
                     <h3 className="text-lg  underline hover:underline-offset-4 ">Login</h3>                     
                   </Link>
                 </li>
-                <li className="text-black text-xl">
-                  <Link href="/contact">
+                <li className="text-black text-xl">                  
                   <MdOutlineShoppingCart className="text-2xl outline hover:outline-offset-2  outline-1 "/>
-                  </Link>
                 </li>
-                <li className="text-black">
-                                
+                <li className="text-black">                                
                 </li>
               </ul>
             </div>
@@ -103,5 +100,6 @@ export default function Navbar() {
       </nav>
       
     </div>
+    
   );
 }

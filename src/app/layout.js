@@ -10,8 +10,8 @@ export default function RootLayout({ children }) {
         <title>L´Antonia Sin Tacc</title>
         <link rel="icon" href="./logo.ico" />
       </head>
+      <body>
       <NavBar/>
-      <body className={inter.className}>
       {children}
       <Footer/>
       </body>
