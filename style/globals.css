@@ -6,3 +6,27 @@ body {
   background-color: #262425,#faf5f4,#a51d1d ;    
   
 }
+
+.miClaseCSS {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: moverYMostrar 1s forwards;
+}
+
+
+
+@keyframes moverYMostrar {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
