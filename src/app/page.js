@@ -1,13 +1,12 @@
-import Image from 'next/image'
-import  NavBar from './component/Navbar'
-import Option_main from './component/Option_mai'
-import { images } from '../../next.config'
-import Banner from './component/banner'
+import Option_mai from "./component/Option_mai"
+import Banner from "./component/banner"
+import Nosotros from "./component/Nosotros"
 export default function Home() {
   return ( 
     <div>    
-    <Option_main/>
-    <Banner></Banner>
+    <Option_mai/>
+    <Banner/>
+    <Nosotros/>
     </div>
   )
 }
