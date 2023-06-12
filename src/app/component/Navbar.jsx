@@ -17,7 +17,7 @@ export default function Navbar() {
         />
         <link  className="outline hover:outline-offset-2" rel="icon" href="/logo.ico" />     
       </Head>
-      <nav className="w-full text-black shadow">
+      <nav className="w-full[100px] text-black shadow justify-center">
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
             <div className="flex items-center justify-between  md:py-3 md:block">
@@ -79,7 +79,7 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li className="text-black text-xl ">
-                  <Link href="/Contact">                                      
+                  <Link href="/contact">                                      
                     <h1 className="text-lg  underline hover:underline-offset-4">Contacto </h1>
                   </Link>
                 </li>
