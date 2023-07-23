@@ -1,7 +1,9 @@
 import Image from "next/image"
 import Link from "next/link";
-import { MdOutlineShoppingCart } from "react-icons/md";
+// import { MdOutlineShoppingCart } from "react-icons/md";
 export default function productos (){
+
+    
     return (
          <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <h1 className="text-xl text-center font-semibold tracking-tight text-gray-900 dark:text-white" >Doninas </h1>
