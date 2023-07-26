@@ -1,9 +1,13 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const port = 3000;
 
-//midelwers
-app.use(express.json)
-app.use(express.urlencoded({extended: true}))
+// Ruta de ejemplo
+app.get('/', (req, res) => {
+  res.send('¡Hola, este es un servidor Express básico!');
+});
 
-
-module.exports = app 
+// Iniciar el servidor
+app.listen(port, () => {
+  console.log(`El servidor está escuchando en http://localhost:${port}`);
+});
