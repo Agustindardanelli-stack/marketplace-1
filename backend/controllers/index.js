@@ -1,2 +1,0 @@
-const addProductos = require('./addProductos')
-
