@@ -1,34 +1,158 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 E-commerce Marketplace
 
-## Getting Started
+A modern, full-stack e-commerce application built with Next.js and Express, featuring a complete shopping experience with user authentication, product management, and order processing.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+- **User Authentication**: Secure registration and login with JWT
+- **Product Catalog**: Browse products by categories with search functionality
+- **Shopping Cart**: Persistent cart with real-time updates
+- **Order Management**: Complete checkout process with order tracking
+- **Admin Dashboard**: Product and inventory management
+- **Responsive Design**: Mobile-first approach with modern UI
+
+## 🛠 Tech Stack
+
+### Frontend
+- **Next.js 14** - React framework with SSR/SSG
+- **Tailwind CSS** - Utility-first CSS framework
+- **TypeScript** - Type-safe development
+
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web application framework
+- **PostgreSQL** - Relational database
+- **Sequelize** - Object-Relational Mapping
+- **JWT** - Authentication tokens
+- **bcrypt** - Password encryption
+
+## 📁 Project Structure
+
+```
+marketplace/
+├── frontend/          # Next.js application
+│   ├── src/
+│   │   ├── app/       # App Router pages
+│   │   ├── components/ # Reusable components
+│   │   └── styles/    # Global styles
+│   └── public/        # Static assets
+├── backend/           # Express.js API
+│   ├── src/
+│   │   ├── models/    # Database models
+│   │   ├── controllers/ # Business logic
+│   │   ├── routes/    # API endpoints
+│   │   ├── middleware/ # Custom middleware
+│   │   └── config/    # Configuration files
+│   └── .env.example   # Environment variables template
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚦 Getting Started
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Prerequisites
+- Node.js 18+ and npm
+- PostgreSQL 12+
+- Git
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Installation
 
-## Learn More
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/marketplace-1.git
+   cd marketplace-1
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Backend Setup**
+   ```bash
+   cd backend
+   npm install
+   cp .env.example .env
+   # Configure your database credentials in .env
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Frontend Setup**
+   ```bash
+   cd ../frontend
+   npm install
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+4. **Database Setup**
+   ```bash
+   # Create PostgreSQL database
+   createdb marketplace
+   # Tables will be created automatically when starting the backend
+   ```
 
-## Deploy on Vercel
+### Environment Variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create a `.env` file in the backend directory:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```env
+# Server
+PORT=3001
+
+# Database
+DB_NAME=marketplace
+DB_USER=postgres
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_PORT=5432
+
+# JWT
+JWT_SECRET=your_jwt_secret_key
+```
+
+## 🌐 API Endpoints
+
+### Authentication
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
+
+### Products
+- `GET /api/products` - Get all products
+- `GET /api/products/:id` - Get single product
+- `POST /api/products` - Create product (Admin)
+- `PUT /api/products/:id` - Update product (Admin)
+
+### Cart & Orders
+- `GET /api/cart` - Get user cart
+- `POST /api/cart` - Add item to cart
+- `POST /api/orders` - Create new order
+
+## 🚀 Deployment
+
+### Backend (Railway/Heroku)
+```bash
+# Set environment variables in your platform
+# Deploy backend first, note the URL
+```
+
+### Frontend (Vercel)
+```bash
+# Connect GitHub repository to Vercel
+# Set NEXT_PUBLIC_API_URL environment variable
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact
+
+Your Name - your.email@example.com
+
+Project Link: [https://github.com/yourusername/marketplace-1](https://github.com/yourusername/marketplace-1)
+
+---
+
+**⭐ Don't forget to give the project a star if it helped you!**
