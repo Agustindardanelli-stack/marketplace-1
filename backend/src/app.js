@@ -1,28 +1,20 @@
+// backend/src/app.js (o donde tengas tu app principal)
 const express = require('express');
 const cors = require('cors');
-const { syncDatabase } = require('./models');
+require('dotenv').config();
 
 const app = express();
 
-// Middlewares básicos
+// Middlewares globales
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Sincronizar BD (crear tablas)
-syncDatabase(true); // force: true para recrear
+// Rutas
+app.use('/api/auth', require('./routes/auth'));
 
 // Ruta de prueba
-app.get('/api/test', (req, res) => {
-  res.json({ 
-    message: '🎉 Backend funcionando!', 
-    timestamp: new Date().toISOString() 
-  });
-});
-
-// Manejo de rutas no encontradas
-app.use((req, res) => {
-  res.status(404).json({ message: 'Ruta no encontrada' });
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'Server is running!' });
 });
 
 module.exports = app;
