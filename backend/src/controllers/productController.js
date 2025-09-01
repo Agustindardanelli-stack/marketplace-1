@@ -1,8 +1,8 @@
-// backend/src/controllers/productController.js
+
 const { Product, Category } = require('../models');
 const { Op } = require('sequelize');
 
-// GET ALL PRODUCTS (Público - con filtros y búsqueda)
+
 const getAllProducts = async (req, res) => {
   try {
     const { 
@@ -16,10 +16,10 @@ const getAllProducts = async (req, res) => {
       sortOrder = 'DESC'
     } = req.query;
 
-    // Construir filtros dinámicos
+    
     const whereClause = {};
     
-    // Filtro de búsqueda (nombre + descripción)
+    
     if (search) {
       whereClause[Op.or] = [
         { name: { [Op.iLike]: `%${search}%` } },
@@ -27,14 +27,14 @@ const getAllProducts = async (req, res) => {
       ];
     }
     
-    // Filtro por rango de precio
+    
     if (minPrice || maxPrice) {
       whereClause.price = {};
       if (minPrice) whereClause.price[Op.gte] = parseFloat(minPrice);
       if (maxPrice) whereClause.price[Op.lte] = parseFloat(maxPrice);
     }
 
-    // Filtro por categoría
+    
     const includeOptions = {
       model: Category,
       as: 'category',
@@ -45,7 +45,7 @@ const getAllProducts = async (req, res) => {
       includeOptions.where = { id: category };
     }
 
-    // Paginación
+    
     const offset = (page - 1) * limit;
 
     const { count, rows: products } = await Product.findAndCountAll({
@@ -54,10 +54,10 @@ const getAllProducts = async (req, res) => {
       order: [[sortBy, sortOrder.toUpperCase()]],
       limit: parseInt(limit),
       offset: offset,
-      distinct: true // Para count correcto con includes
+      distinct: true 
     });
 
-    // Respuesta con metadatos de paginación
+    
     res.json({
       products,
       pagination: {
@@ -80,7 +80,7 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-// GET SINGLE PRODUCT (Público)
+
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -105,7 +105,7 @@ const getProductById = async (req, res) => {
   }
 };
 
-// CREATE PRODUCT (Solo Admin)
+
 const createProduct = async (req, res) => {
   try {
     const { 
@@ -117,14 +117,14 @@ const createProduct = async (req, res) => {
       categoryId 
     } = req.body;
 
-    // Validaciones
+    
     if (!name || !description || !price || stock === undefined || !categoryId) {
       return res.status(400).json({
         error: 'Required fields: name, description, price, stock, categoryId'
       });
     }
 
-    // Verificar que la categoría existe
+    
     const category = await Category.findByPk(categoryId);
     if (!category) {
       return res.status(400).json({ error: 'Invalid category' });
@@ -139,7 +139,7 @@ const createProduct = async (req, res) => {
       categoryId
     });
 
-    // Respuesta con categoría incluida
+    
     const createdProduct = await Product.findByPk(product.id, {
       include: [{
         model: Category,
@@ -159,7 +159,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-// UPDATE PRODUCT (Solo Admin)
+
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -170,7 +170,7 @@ const updateProduct = async (req, res) => {
       return res.status(404).json({ error: 'Product not found' });
     }
 
-    // Si se cambia categoría, verificar que existe
+    
     if (categoryId) {
       const category = await Category.findByPk(categoryId);
       if (!category) {
@@ -187,7 +187,7 @@ const updateProduct = async (req, res) => {
       categoryId: categoryId || product.categoryId
     });
 
-    // Respuesta con categoría incluida
+    
     const updatedProduct = await Product.findByPk(product.id, {
       include: [{
         model: Category,
@@ -207,7 +207,7 @@ const updateProduct = async (req, res) => {
   }
 };
 
-// DELETE PRODUCT (Solo Admin)
+
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;

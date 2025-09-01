@@ -1,3 +1,4 @@
+
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 
@@ -7,7 +8,7 @@ const generateToken = (user) => {
     { 
       userId: user.id,
       email: user.email,
-      role: user.role 
+      role: user.role  
     },
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES_IN }
@@ -17,7 +18,7 @@ const generateToken = (user) => {
 
 const register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, role = 'customer' } = req.body;
+    const { firstName, lastName, email, password, isAdmin  } = req.body; 
 
     
     if (!firstName || !lastName || !email || !password) {
@@ -39,8 +40,8 @@ const register = async (req, res) => {
       firstName,
       lastName,
       email,
-      password, 
-      role
+      password,
+      isAdmin 
     });
 
     
@@ -54,7 +55,7 @@ const register = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        role: user.role
+        role: user.role  
       },
       token
     });
@@ -70,14 +71,12 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    
     if (!email || !password) {
       return res.status(400).json({
         error: 'Email and password are required'
       });
     }
 
-    
     const user = await User.findOne({ where: { email } });
     if (!user) {
       return res.status(401).json({
@@ -85,7 +84,6 @@ const login = async (req, res) => {
       });
     }
 
-    
     const isValidPassword = await user.validatePassword(password);
     if (!isValidPassword) {
       return res.status(401).json({
@@ -93,10 +91,8 @@ const login = async (req, res) => {
       });
     }
 
-    
     const token = generateToken(user);
 
-    
     res.json({
       message: 'Login successful',
       user: {
@@ -104,7 +100,7 @@ const login = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        role: user.role
+        role: user.role  
       },
       token
     });
