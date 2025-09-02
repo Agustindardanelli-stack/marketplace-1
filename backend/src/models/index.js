@@ -7,6 +7,7 @@ const Product = require('./Product');
 const Cart = require('./Cart');
 const Order = require('./Order');
 const OrderItem = require('./OrderItem');
+const CartItem = require('./CartItem');
 
 // DEFINIR RELACIONES
 
@@ -32,10 +33,10 @@ Product.belongsTo(User, {
   as: 'creator'
 });
 
-// 3. User -> Cart (un usuario tiene muchos items en carrito)
+// 3. User -> Cart (un usuario tiene carritos)
 User.hasMany(Cart, {
   foreignKey: 'userId',
-  as: 'cartItems'
+  as: 'userCarts'
 });
 
 Cart.belongsTo(User, {
@@ -43,18 +44,29 @@ Cart.belongsTo(User, {
   as: 'user'
 });
 
-// 4. Product -> Cart (un producto puede estar en muchos carritos)
-Product.hasMany(Cart, {
+// 4. Cart -> CartItems (un carrito tiene muchos items)
+Cart.hasMany(CartItem, {
+  foreignKey: 'cartId',
+  as: 'items'
+});
+
+CartItem.belongsTo(Cart, {
+  foreignKey: 'cartId',
+  as: 'cart'
+});
+
+// 5. Product -> CartItems (un producto puede estar en muchos carritos)
+Product.hasMany(CartItem, {
   foreignKey: 'productId',
   as: 'cartItems'
 });
 
-Cart.belongsTo(Product, {
+CartItem.belongsTo(Product, {
   foreignKey: 'productId',
   as: 'product'
 });
 
-// 5. User -> Orders (un usuario tiene muchas órdenes)
+// 6. User -> Orders (un usuario tiene muchas órdenes)
 User.hasMany(Order, {
   foreignKey: 'userId',
   as: 'orders'
@@ -65,7 +77,7 @@ Order.belongsTo(User, {
   as: 'customer'
 });
 
-// 6. Order -> OrderItems (una orden tiene muchos items)
+// 7. Order -> OrderItems (una orden tiene muchos items)
 Order.hasMany(OrderItem, {
   foreignKey: 'orderId',
   as: 'items'
@@ -76,7 +88,7 @@ OrderItem.belongsTo(Order, {
   as: 'order'
 });
 
-// 7. Product -> OrderItems (un producto puede estar en muchos items de órdenes)
+// 8. Product -> OrderItems (un producto puede estar en muchos items de órdenes)
 Product.hasMany(OrderItem, {
   foreignKey: 'productId',
   as: 'orderItems'
@@ -97,6 +109,7 @@ const syncDatabase = async (force = false) => {
     
     // Luego los que dependen de otros
     await Cart.sync({ force });
+    await CartItem.sync({ force });
     await Order.sync({ force });
     await OrderItem.sync({ force });
     
@@ -112,6 +125,7 @@ module.exports = {
   Category,
   Product,
   Cart,
+  CartItem,
   Order,
   OrderItem,
   syncDatabase

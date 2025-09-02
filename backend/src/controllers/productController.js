@@ -108,6 +108,7 @@ const getProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
+    console.log('req.user:', req.user);
     const { 
       name, 
       description, 
@@ -131,17 +132,20 @@ const createProduct = async (req, res) => {
     }
 
     const product = await Product.create({
-      name,
-      description,
-      price: parseFloat(price),
-      stock: parseInt(stock),
-      imageUrl,
-      categoryId
-    });
+  name,
+  description,
+  price: parseFloat(price),
+  stock: parseInt(stock),
+  imageUrl,
+  categoryId,
+  createdBy: req.user.id
+});
 
     
     const createdProduct = await Product.findByPk(product.id, {
+      
       include: [{
+        
         model: Category,
         as: 'category',
         attributes: ['id', 'name', 'description']
